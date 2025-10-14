@@ -1,0 +1,29 @@
+# Data directories (volumes)
+prometheus_data/
+grafana_data/
+postgres_data/
+
+# Sensitive files
+*.env
+**/secrets/
+*.key
+*.pem
+*.secret
+
+# Backup files
+*.tar.gz
+*backup*
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.iml

@@ -1,0 +1,22 @@
+{
+  "dashboard": {
+    "title": "CoreWeave Alerts",
+    "panels": [
+      {
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0},
+        "id": 1,
+        "title": "Active Alerts",
+        "type": "alertlist",
+        "options": {
+          "showOptions": "current",
+          "maxItems": 10,
+          "sortOrder": "1",
+          "dashboardAlerts": false,
+          "alertName": "",
+          "dashboardTitle": "",
+          "tags": []
+        }
+      }
+    ]
+  }
+}

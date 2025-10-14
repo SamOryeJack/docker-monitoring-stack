@@ -1,0 +1,43 @@
+groups:
+  - name: gpu_alerts
+    interval: 30s
+    rules:
+      - alert: GPUOverheating
+        expr: gpu_temperature_celsius > 85
+        for: 1m
+        labels:
+          severity: critical
+          component: gpu
+        annotations:
+          summary: "GPU {{ $labels.gpu_id }} overheating"
+          description: "Temperature is {{ $value }}°C (threshold: 85°C)"
+      
+      - alert: GPUOffline
+        expr: gpu_utilization_percent == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: gpu
+        annotations:
+          summary: "GPU {{ $labels.gpu_id }} is offline"
+          description: "GPU has been at 0% utilization for 2 minutes"
+      
+      - alert: QueueBacklog
+        expr: job_queue_size > 75
+        for: 5m
+        labels:
+          severity: warning
+          component: queue
+        annotations:
+          summary: "Job queue backlog detected"
+          description: "{{ $value }} jobs waiting in {{ $labels.queue_type }} queue"
+      
+      - alert: HighErrorRate
+        expr: rate(app_requests_total{status="500"}[5m]) / rate(app_requests_total[5m]) > 0.2
+        for: 2m
+        labels:
+          severity: warning
+          component: application
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }}"

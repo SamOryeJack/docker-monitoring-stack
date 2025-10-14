@@ -1,0 +1,38 @@
+# You could also add comments to track versions:
+@app.route('/api/test')
+def api_test():
+    """
+    Test endpoint that simulates:
+    - Variable response times
+    - GPU failures (5% chance GPU 3 dies)
+    - Application errors (20% failure rate)
+    """
+    start_time = time.time()
+    active_connections.inc()
+    
+    try:
+        # Simulate varying response times (KEEP THIS)
+        processing_time = random.uniform(0.05, 0.5)
+        time.sleep(processing_time)
+        
+        # ADD THIS: Simulate GPU 3 going offline sometimes (NEW)
+        if random.random() < 0.05:  # 5% chance GPU fails
+            gpu_utilization.labels(gpu_id='gpu_3').set(0)
+            gpu_memory_usage.labels(gpu_id='gpu_3').set(0)
+        
+        # CHANGE THIS: Increase failure rate to 20% (MODIFIED)
+        if random.random() < 0.2:  # 20% failure rate (was 0.1)
+            request_count.labels(method='GET', endpoint='/api/test', status='500').inc()
+            return jsonify({'error': 'GPU memory overflow!'}), 500  # Changed error message
+        
+        # Success case (KEEP THIS)
+        request_count.labels(method='GET', endpoint='/api/test', status='200').inc()
+        return jsonify({
+            'result': 'success',
+            'processing_time': processing_time
+        })
+    finally:
+        active_connections.dec()
+        request_duration.labels(method='GET', endpoint='/api/test').observe(
+            time.time() - start_time
+        )
