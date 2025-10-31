@@ -177,7 +177,7 @@ monitoring-project/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/docker-monitoring-stack.git
+git clone https://github.com/SamOryeJack/docker-monitoring-stack.git
 cd docker-monitoring-stack
 ```
 
@@ -305,8 +305,6 @@ This project served as Phase 1. Phase 2 involves:
 - [ ] Create custom Helm chart for deployment
 - [ ] Implement GitOps with ArgoCD
 
-**See:** [kubernetes-monitoring-stack](https://github.com/YOUR_USERNAME/kubernetes-monitoring-stack) for Phase 2
-
 ---
 
 ## 💰 Cost Analysis
@@ -339,12 +337,12 @@ MIT License - Feel free to use this project for learning purposes.
 
 ## 👤 Author
 
-**Your Name**  
+**Paul Desmond**  
 Building cloud infrastructure monitoring solutions
 
-- Portfolio: [your-website.com]
-- LinkedIn: [your-linkedin]
-- GitHub: [@your-username]
+- GitHub: [@SamOryeJack](https://github.com/SamOryeJack)
+- LinkedIn: [linkedin.com/in/paul-desmond-155495219](https://www.linkedin.com/in/paul-desmond-155495219/)
+
 
 ---
 
